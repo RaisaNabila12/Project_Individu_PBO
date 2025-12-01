@@ -8,6 +8,7 @@ Jadi ceritanya, kamu diminta pemerintah buat bikin sistem yang bisa ngatur siapa
 siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pendapatan bus.
 
 **Fitur Utama**
+
 **1. Manajemen Penumpang**
 - Menambahkan penumpang ke dalam bus.
 - Menghapus penumpang dari bus.
@@ -26,3 +27,15 @@ siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pen
 - Jika kursi penuh, penumpang akan berdiri.
 - Total kapasitas bus: 40 penumpang.
 
+**3. Sistem Pembayaran**
+- Setiap penumpang memiliki kartu saldo.
+- Ongkos bus: Rp2.000 (nilai static final).
+- Penumpang hanya bisa naik jika saldonya mencukupi.
+- Jika berhasil naik, saldonya dikurangi ongkos.
+- Semua pembayaran dicatat sebagai total pendapatan bus.
+
+  **4. Simulasi Interaktif**
+  Program menyediakan menu:
+  - Naikkan Penumpang
+  - Turunkan Penumpang
+  - Lihat Penumpang dan Total Pendapatan
