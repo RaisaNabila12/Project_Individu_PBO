@@ -115,4 +115,125 @@ public class Bus {
             }
         }
 
+        // Cek apakah penumpang berhasil ditempatkan
+        if (penumpangBiasa.contains(penumpang) || penumpangPrioritas.contains(penumpang) || penumpangBerdiri.contains(penumpang)) {
+            // Kurangi saldo penumpang
+            penumpang.kurangiSaldo(ONGKOS_BUS);
+
+            // Bila penumpang berhasil naik, maka total pendapatan bus akan ditambah 
+            totalPendapatan += ONGKOS_BUS;
+
+            System.out.println("Berhasil: " + penumpang.getNama() + " berhasil naik. Saldo tersisa: " + penumpang.getSaldo());
+            return true;
+        } else {
+            // Ini seharusnya hanya terjadi jika bus sudah penuh, tapi sebagai fallback
+            System.out.println("Gagal: Penumpang tidak dapat ditempatkan di bus.");
+            return false;
+        }
+    }
+    
+    // + turunkan Penumpang (nama: String): Boolean 
+    public boolean turunkanPenumpang(String nama) {
+        boolean berhasilTurun = false;
+        Penumpang penumpangDitemukan = null;
+
+        // Cari di penumpang Biasa
+        for (Penumpang p : penumpangBiasa) {
+            if (p.getNama().equalsIgnoreCase(nama)) {
+                penumpangDitemukan = p;
+                break;
+            }
+        }
+        if (penumpangDitemukan != null) {
+            penumpangBiasa.remove(penumpangDitemukan);
+            berhasilTurun = true;
+        }
         
+        // Jika belum ditemukan, cari di penumpang Prioritas
+        if (!berhasilTurun) {
+            for (Penumpang p : penumpangPrioritas) {
+                if (p.getNama().equalsIgnoreCase(nama)) {
+                    penumpangDitemukan = p;
+                    break;
+                }
+            }
+            if (penumpangDitemukan != null) {
+                penumpangPrioritas.remove(penumpangDitemukan);
+                berhasilTurun = true;
+            }
+        }
+        
+        // Jika belum ditemukan, cari di penumpang Berdiri
+        if (!berhasilTurun) {
+            for (Penumpang p : penumpangBerdiri) {
+                if (p.getNama().equalsIgnoreCase(nama)) {
+                    penumpangDitemukan = p;
+                    break;
+                }
+            }
+            if (penumpangDitemukan != null) {
+                penumpangBerdiri.remove(penumpangDitemukan);
+                berhasilTurun = true;
+            }
+        }
+
+        if (berhasilTurun) {
+            System.out.println("Berhasil: " + nama + " berhasil turun.");
+            return true;
+        } else {
+            // Sebaliknya, kembalikan false 
+            System.out.println("Gagal: Penumpang " + nama + " tidak ditemukan!");
+            return false;
+        }
+    }
+
+    // Method untuk mencetak informasi Bus 
+    // + toString(): String
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        
+        // Penumpang Biasa
+        sb.append("Penumpang Biasa (Kursi: ").append(getJumlahPenumpangBiasa()).append("/").append(KAPASITAS_KURSI_BIASA).append("): ");
+        if (penumpangBiasa.isEmpty()) {
+            sb.append("<kosong>");
+        } else {
+            for (int i = 0; i < penumpangBiasa.size(); i++) {
+                sb.append(penumpangBiasa.get(i).getNama());
+                if (i < penumpangBiasa.size() - 1) sb.append(", ");
+            }
+        }
+        sb.append("\n");
+
+        // Penumpang Prioritas
+        sb.append("Penumpang Prioritas (Kursi: ").append(getJumlahPenumpangPrioritas()).append("/").append(KAPASITAS_KURSI_PRIORITAS).append("): ");
+        if (penumpangPrioritas.isEmpty()) {
+            sb.append("<kosong>");
+        } else {
+            for (int i = 0; i < penumpangPrioritas.size(); i++) {
+                sb.append(penumpangPrioritas.get(i).getNama());
+                if (i < penumpangPrioritas.size() - 1) sb.append(", ");
+            }
+        }
+        sb.append("\n");
+        
+        // Penumpang Berdiri
+        sb.append("Penumpang Berdiri (Total: ").append(getJumlahPenumpangBerdiri()).append("/").append(KAPASITAS_BERDIRI).append("): ");
+        if (penumpangBerdiri.isEmpty()) {
+            sb.append("<kosong>");
+        } else {
+            for (int i = 0; i < penumpangBerdiri.size(); i++) {
+                sb.append(penumpangBerdiri.get(i).getNama());
+                if (i < penumpangBerdiri.size() - 1) sb.append(", ");
+            }
+        }
+        sb.append("\n");
+
+        // Jumlah semua penumpang
+        sb.append("Jumlah Semua Penumpang: ").append(getTotalPenumpang()).append(" (Max: ").append(MAKSIMAL_KAPASITAS_BUS).append(")\n");
+        // Total pendapatan bus
+        sb.append("Total Pendapatan Bus: ").append(totalPendapatan);
+
+        return sb.toString();
+    }
+}
