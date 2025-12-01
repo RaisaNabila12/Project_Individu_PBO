@@ -52,4 +52,59 @@ public class TestBus {
         scanner.close();
     }
 
+    private static void tampilkanMenu() {
+        System.out.println("\n===== BUS TRANS KOETARADJA ====="); // Contoh simulasi 
+        System.out.println("MENU:"); 
+        System.out.println("1. Naikkan Penumpang"); 
+        System.out.println("2. Turunkan Penumpang");
+        System.out.println("3. Lihat Penumpang dan Total Pendapatan"); 
+        System.out.println("0. Keluar");
+    }
+
+    private static void naikkanPenumpangDariInput() {
+        try {
+            System.out.print("Nama: "); // Nama 
+            String nama = scanner.nextLine();
+            
+            System.out.print("Umur: "); // Umur 
+            int umur = Integer.parseInt(scanner.nextLine());
+            
+            System.out.print("Hamil (y/n): "); // Hamil (y/n) [cite: 84]
+            String hamilStr = scanner.nextLine();
+            boolean hamil = hamilStr.equalsIgnoreCase("y");
+            
+            // Membuat objek baru 
+            Penumpang p = new Penumpang(nextPenumpangId++, nama, umur, hamil);
+            
+            // Memanggil method 
+            if (transKoetaradja.naikkanPenumpang(p)) { 
+                // Penumpang Berhasil ditambahkan! 
+                // Pesan berhasil/gagal sudah ada di method naikkanPenumpang
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Gagal: Input umur harus berupa angka.");
+        }
+    }
     
+    private static void turunkanPenumpangDariInput() {
+        // Nama 
+        System.out.print("Nama yang akan turun: "); 
+        String nama = scanner.nextLine();
+        
+        // Memanggil method 
+        if (transKoetaradja.turunkanPenumpang(nama)) {
+            // Penumpang Berhasil Turun! 
+            // Pesan berhasil/gagal sudah ada di method turunkanPenumpang
+        } else {
+            // Penumpang Tidak ditemukan! 
+            // Pesan gagal sudah ada di method turunkanPenumpang
+        }
+    }
+
+    private static void lihatPenumpang() {
+        System.out.println("\n--- Data Bus Saat Ini ---");
+        // Memanggil method toString() dari objek Bus
+        System.out.println(transKoetaradja.toString()); 
+        System.out.println("-------------------------");
+    }
+}
