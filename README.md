@@ -4,8 +4,8 @@
 
 **Deskripsi Project**
 Program ini adalah simulasi sederhana untuk mengatur penumpang Bus Trans Koetaradja. 
-Jadi ceritanya, kamu diminta pemerintah buat bikin sistem yang bisa ngatur siapa bisa duduk di mana, 
-siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pendapatan bus.
+Jadi ceritanya, kita diminta pemerintah buat bikin sistem yang bisa mengatur siapa bisa duduk di mana, 
+siapa yang harus berdiri, siapa yang boleh duduk di kursi prioritas, sampai menghitung pendapatan bus.
 
 
 **Fitur Utama**
@@ -43,3 +43,56 @@ siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pen
   - Naikkan Penumpang
   - Turunkan Penumpang
   - Lihat Penumpang dan Total Pendapatan
+
+
+**Struktur Kelas**
+
+
+Class **Penumpang**
+Mewakili satu penumpang dengan atribut:
+- Id
+- Umur
+- Hamil (boolean)
+- Saldo
+
+Method Penting:
+- tambahSaldo()
+- kurangiSaldo()
+- Getter untuk semua atribut
+  
+
+Class **Bus**
+
+Mewakili satu objek Bus yang berisi:
+- Array/ArrayList penumpang biasa
+- Array/ArrayList penumpang prioritas
+- Array/ArrayList penumpang berdiri
+- ONGKOS_BUS (2000)
+- totalPendapatan
+
+Method Penting:
+- naikkanPenumpang()
+- turunkanPenumpang()
+- getJumlahPenumpang*()
+- toString()
+
+
+Class **TestBus**
+
+Berfungsi sebagai main program untuk menjalankan simulasi, termasuk:
+- Input data penumpang
+- Menampilkan menu
+- Menghubungkan interaksi user dengan class Bus dan Penumpang
+
+
+**Konsep OOP yang Digunakan**
+
+- Class & Object  -> Penumpang, Bus, dan objek-objeknya
+- Encapsulation   -> Atribut dibuat private, akses via getter/setter
+- Abstraction     ->	Method seperti naikkanPenumpang() menyembunyikan detail proses
+- Polymorphism / Overriding (opsional)	-> Bisa diterapkan pada toString()
+- Collection (Array / ArrayList)	-> Menyimpan daftar penumpang
+- Exception Handling	-> Validasi input & saldo
+- Static Final Field	-> ONGKOS_BUS pada class Bus
+
+
