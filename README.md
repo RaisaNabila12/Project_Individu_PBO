@@ -7,6 +7,7 @@ Program ini adalah simulasi sederhana untuk mengatur penumpang Bus Trans Koetara
 Jadi ceritanya, kamu diminta pemerintah buat bikin sistem yang bisa ngatur siapa bisa duduk di mana, 
 siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pendapatan bus.
 
+
 **Fitur Utama**
 
 **1. Manajemen Penumpang**
@@ -16,6 +17,7 @@ siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pen
   - Kursi biasa (maks. 16)
   - Kursi prioritas (maks. 4)
   - Penumpang berdiri (maks. 20)
+
 
 **2. Aturan Kursi**
 - Kursi Prioritas hanya untuk:
@@ -27,6 +29,7 @@ siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pen
 - Jika kursi penuh, penumpang akan berdiri.
 - Total kapasitas bus: 40 penumpang.
 
+
 **3. Sistem Pembayaran**
 - Setiap penumpang memiliki kartu saldo.
 - Ongkos bus: Rp2.000 (nilai static final).
@@ -34,7 +37,8 @@ siapa harus berdiri, siapa boleh duduk di kursi prioritas, sampai menghitung pen
 - Jika berhasil naik, saldonya dikurangi ongkos.
 - Semua pembayaran dicatat sebagai total pendapatan bus.
 
-  **4. Simulasi Interaktif**
+
+**4. Simulasi Interaktif**
   Program menyediakan menu:
   - Naikkan Penumpang
   - Turunkan Penumpang
